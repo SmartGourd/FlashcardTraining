@@ -7,11 +7,25 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Takes care of storing, saving and loading the application state.
+ * Is distributed to pages which modify the state property
+ */
 public class AppState {
-    public State state; // The state of the application
+    /**
+     * Used to store the state of the application data, is serialized to Json upon saving and loaded by deserializing from JSON on loading
+     */
+    public State state;
 
+    /**
+     * Used to serialize and deserialize to JSON
+     */
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    /**
+     * Create new App state instance with no state, which is loaded later
+     * The state is not loaded in the constructor because it is an IO operation which may take long time or fail
+     */
     public AppState() {
         this.state = null;
     }
