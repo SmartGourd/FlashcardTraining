@@ -1,15 +1,13 @@
 package cz.cuni.mff.nagylad.routing;
 
 import cz.cuni.mff.nagylad.model.AppState;
-import cz.cuni.mff.nagylad.pages.MainPage;
-import cz.cuni.mff.nagylad.pages.SetDetailPage;
-import cz.cuni.mff.nagylad.pages.SetsPage;
-import cz.cuni.mff.nagylad.pages.TrainingPage;
+import cz.cuni.mff.nagylad.pages.*;
 
 public class Router {
     public static final String EXIT_CODE = "exit";
     public static final String SETS_CODE = "sets";
     public static final String MAIN_CODE = "main";
+    public static final String GAME_CODE = "game";
 
     private final App app;
     private final AppState appState;
@@ -20,7 +18,7 @@ public class Router {
     }
 
     public void changePage(AvailablePages newPage) {
-        if (newPage == AvailablePages.SetDetailPage) {
+        if (newPage == AvailablePages.SET_DETAIL_PAGE) {
             throw new RuntimeException("The set needs to be selected for the SetDetail");
         }
         changePage(newPage, 0);
@@ -29,10 +27,11 @@ public class Router {
 
     public void changePage(AvailablePages newPage, Integer setIndex) {
         switch (newPage) {
-            case MainPage -> app.page = new MainPage(this, appState);
-            case SetsPage -> app.page = new SetsPage(this, appState);
-            case SetDetailPage -> app.page = new SetDetailPage(this, appState, setIndex);
-            case TrainingPage -> app.page = new TrainingPage(this, appState, setIndex);
+            case MAIN_PAGE -> app.page = new MainPage(this, appState);
+            case SETS_PAGE -> app.page = new SetsPage(this, appState);
+            case SET_DETAIL_PAGE -> app.page = new SetDetailPage(this, appState, setIndex);
+            case TRAINING_PAGE -> app.page = new TrainingPage(this, appState, setIndex);
+            case GAME_PAGE -> app.page = new GamePage(this, appState);
         }
     }
 }

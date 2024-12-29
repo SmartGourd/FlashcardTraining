@@ -1,12 +1,17 @@
 package cz.cuni.mff.nagylad.routing;
 
 import cz.cuni.mff.nagylad.model.AppState;
+import cz.cuni.mff.nagylad.model.Game;
 import cz.cuni.mff.nagylad.model.State;
 import cz.cuni.mff.nagylad.pages.MainPage;
+import cz.cuni.mff.nagylad.pages.Page;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public class App {
     public Page page;
     private final Router router;
@@ -28,7 +33,7 @@ public class App {
             System.out.println("Successfully loaded the application data!");
         } catch (IOException e) {
             System.out.println("Failed to load the application data!");
-            return;
+            System.out.println("Starting with blank state!");
         }
 
         initializeStateIfNull();
@@ -57,6 +62,10 @@ public class App {
         if (appState.state == null || appState.state.sets == null) {
             appState.state = new State();
             appState.state.sets = new ArrayList<>();
+        }
+
+        if (appState.state.game == null) {
+            appState.state.game = new Game();
         }
     }
 }

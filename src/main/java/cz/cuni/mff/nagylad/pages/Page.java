@@ -1,6 +1,8 @@
-package cz.cuni.mff.nagylad.routing;
+package cz.cuni.mff.nagylad.pages;
 
 import cz.cuni.mff.nagylad.model.AppState;
+import cz.cuni.mff.nagylad.routing.CloseApplicationException;
+import cz.cuni.mff.nagylad.routing.Router;
 
 import java.util.Scanner;
 

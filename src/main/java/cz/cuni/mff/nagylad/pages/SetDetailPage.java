@@ -4,7 +4,7 @@ import cz.cuni.mff.nagylad.model.AppState;
 import cz.cuni.mff.nagylad.model.Set;
 import cz.cuni.mff.nagylad.model.TermDefinitionPair;
 import cz.cuni.mff.nagylad.routing.AvailablePages;
-import cz.cuni.mff.nagylad.routing.Page;
+import cz.cuni.mff.nagylad.routing.CloseApplicationException;
 import cz.cuni.mff.nagylad.routing.Router;
 
 import java.util.Scanner;
@@ -48,13 +48,14 @@ public class SetDetailPage extends Page {
         System.out.println("Type 'remove' to delete a term-definition pair, you will specify its number in the next input");
         System.out.println("Type 'rename' to rename the current set");
         System.out.println("Type 'delete_set_not_reversible' to delete the current set, this is NOT reversible!");
+        System.out.printf("Type '%s' and press enter to save the application state and leave the application.%n", Router.EXIT_CODE);
 
         System.out.print("Type here: ");
         String input = new Scanner(System.in).nextLine();
 
         switch (input) {
-            case Router.SETS_CODE -> router.changePage(AvailablePages.SetsPage);
-            case "training" -> router.changePage(AvailablePages.TrainingPage, setIndex);
+            case Router.SETS_CODE -> router.changePage(AvailablePages.SETS_PAGE);
+            case "training" -> router.changePage(AvailablePages.TRAINING_PAGE, setIndex);
             case "add" -> {
                 System.out.print("Type the term: ");
                 String term = new Scanner(System.in).nextLine();
@@ -84,8 +85,9 @@ public class SetDetailPage extends Page {
             }
             case "delete_set_not_reversible" -> {
                 appState.state.sets.remove(setIndex);
-                router.changePage(AvailablePages.SetsPage);
+                router.changePage(AvailablePages.SETS_PAGE);
             }
+            case "exit" -> throw new CloseApplicationException("Application closed by exiting from the set detail page!");
         }
     }
 }

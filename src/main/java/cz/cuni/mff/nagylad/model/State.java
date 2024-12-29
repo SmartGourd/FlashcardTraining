@@ -4,5 +4,6 @@ import java.util.List;
 
 public class State {
     public List<Set> sets;
+    public Game game;
 }
 
