@@ -1,8 +1,29 @@
 {
   "sets": [
     {
-      "name": "Ahoj",
-      "termDefinitionPairs": []
+      "name": "Zvířata",
+      "termDefinitionPairs": [
+        {
+          "term": "kočka",
+          "definition": "cat"
+        },
+        {
+          "term": "pes",
+          "definition": "dog"
+        },
+        {
+          "term": "kráva",
+          "definition": "cow"
+        },
+        {
+          "term": "papoušek",
+          "definition": "parrot"
+        },
+        {
+          "term": "tukan",
+          "definition": "tucan"
+        }
+      ]
     }
   ]
 }

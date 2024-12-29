@@ -24,14 +24,18 @@ public class SetDetailPage extends Page {
 
         Set set = appState.state.sets.get(setIndex);
 
-        System.out.printf("This set name: %s%n", set.name);
+        System.out.printf("This set has name: %s%n", set.name);
         System.out.println("The set has these term-definition pairs");
         if (set.termDefinitionPairs.isEmpty()) {
             System.out.println("There are no term-definition pairs");
-        }
-        for (TermDefinitionPair pair: set.termDefinitionPairs) {
+        } else {
             System.out.println("Format is: Term, Definition");
-            System.out.printf("%s, %s%n%n", pair.term, pair.definition);
+        }
+
+        int index = 0;
+        for (TermDefinitionPair pair: set.termDefinitionPairs) {
+            System.out.printf("%s - %s, %s%n", index, pair.term, pair.definition);
+            index++;
         }
 
         System.out.println();
@@ -39,27 +43,46 @@ public class SetDetailPage extends Page {
             "Type '%s' and press enter to go back to your sets.%n",
             Router.SETS_CODE
         );
-        System.out.println("Type 'pair' to add a new term-definition pair");
+        System.out.println("Type 'training' to start training on this set");
+        System.out.println("Type 'add' to add a new term-definition pair");
+        System.out.println("Type 'remove' to delete a term-definition pair, you will specify its number in the next input");
         System.out.println("Type 'rename' to rename the current set");
-        System.out.println("Type 'delete' to delete the current set, this is NOT reversible!");
+        System.out.println("Type 'delete_set_not_reversible' to delete the current set, this is NOT reversible!");
 
         System.out.print("Type here: ");
         String input = new Scanner(System.in).nextLine();
 
         switch (input) {
             case Router.SETS_CODE -> router.changePage(AvailablePages.SetsPage);
-            case "pair" -> {
+            case "training" -> router.changePage(AvailablePages.TrainingPage, setIndex);
+            case "add" -> {
                 System.out.print("Type the term: ");
                 String term = new Scanner(System.in).nextLine();
                 System.out.print("Type the definition: ");
                 String definition = new Scanner(System.in).nextLine();
                 set.termDefinitionPairs.add(new TermDefinitionPair(term, definition));
             }
+            case "remove" -> {
+                System.out.print("Type the pair number to remove: ");
+                String indexToRemove = new Scanner(System.in).nextLine();
+                try {
+                    // Check if the input is a number
+                    int pairIndex = Integer.parseInt(indexToRemove);
+
+                    if (pairIndex >= 0 && pairIndex < appState.state.sets.get(setIndex).termDefinitionPairs.size()) {
+                        appState.state.sets.get(setIndex).termDefinitionPairs.remove(pairIndex);
+                    } else {
+                        System.out.println("Invalid set number. Please try again.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Input is not a number!");
+                }
+            }
             case "rename" -> {
                 System.out.print("Type the new set name: ");
                 set.name = new Scanner(System.in).nextLine();
             }
-            case "delete" -> {
+            case "delete_set_not_reversible" -> {
                 appState.state.sets.remove(setIndex);
                 router.changePage(AvailablePages.SetsPage);
             }

@@ -4,6 +4,7 @@ import cz.cuni.mff.nagylad.model.AppState;
 import cz.cuni.mff.nagylad.pages.MainPage;
 import cz.cuni.mff.nagylad.pages.SetDetailPage;
 import cz.cuni.mff.nagylad.pages.SetsPage;
+import cz.cuni.mff.nagylad.pages.TrainingPage;
 
 public class Router {
     public static final String EXIT_CODE = "exit";
@@ -31,6 +32,7 @@ public class Router {
             case MainPage -> app.page = new MainPage(this, appState);
             case SetsPage -> app.page = new SetsPage(this, appState);
             case SetDetailPage -> app.page = new SetDetailPage(this, appState, setIndex);
+            case TrainingPage -> app.page = new TrainingPage(this, appState, setIndex);
         }
     }
 }
