@@ -64,10 +64,22 @@
     {
       "name": "Ahoj",
       "termDefinitionPairs": []
+    },
+    {
+      "name": "Jedeme",
+      "termDefinitionPairs": [
+        {
+          "term": "TU",
+          "definition": "Jedu",
+          "box": 1,
+          "timesTriedFromLastBox": 0,
+          "weight": 1.0
+        }
+      ]
     }
   ],
   "game": {
-    "gems": 5353,
+    "gems": 4813,
     "city": [
       "B",
       null,
@@ -156,9 +168,9 @@
       null,
       null,
       null,
-      null,
-      null,
-      null,
+      "T",
+      "T",
+      "T",
       null,
       null,
       null,
