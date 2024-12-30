@@ -5,10 +5,10 @@ import cz.cuni.mff.nagylad.routing.App;
 /**
  * Creator: Ladislav Nagy
 
- * Programmer Documentation for the Learning Application
+ * Programmer Documentation for the Flashcard Training
 
  **** Application Overview
- * The Learning Application is a console-based educational tool designed to help users practice flashcards while earning rewards in the form of gems.
+ * The Flashcard Training is a console-based educational tool designed to help users practice flashcards while earning rewards in the form of gems.
  * These gems can be used to develop a virtual city on a 10x10 grid.
  * The application saves and loads its state via a JSON file (appData.json) and organizes its functionality into distinct pages, each handling a specific feature.
 

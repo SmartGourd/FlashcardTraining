@@ -1,6 +1,6 @@
-# User Documentation for the Learning Application
+# User Documentation for the Flashcard Training
 - To see the programming documentation see the Main.java file for an overview and architecture or the comments and javadoc in code
-- Welcome to the Learning Application! 
+- Welcome to the Flashcard Training! 
 - This application will help you practice your flashcards and award you with gems to build your city
 - Below is a guide to navigating and using the application
 
